@@ -33,7 +33,7 @@ class AndreyMarkov
     if @configuration.verbose
       p "timer"
     end
-    speak_with_chance(@configuration.speak_percent)
+    speak_with_chance(@configuration.tick_probability)
   end
 
   def respond_to_message(string_or_array)
