@@ -9,5 +9,18 @@ hash.each do |key,value|
   end
 end
 
-puts outer_count
-puts inner_count
+puts "words in lexicon #{outer_count}"
+puts "total transitions #{inner_count}"
+
+require "andreymarkov/markov_table"
+
+x = MarkovTable.new
+
+
+l = []
+
+100.times do
+  l << x.make_sentence.length
+end
+
+puts "average sentence length #{l.inject(:+) / 100.0}"
