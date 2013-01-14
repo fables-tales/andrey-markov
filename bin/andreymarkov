@@ -4,10 +4,9 @@ require "andreymarkov"
 
 
 AndreyMarkov.configure do |configuration|
-  configuration.channel = "#bag-bots"
+  configuration.channel = "#bag"
   configuration.server  = "irc.synirc.net"
-  configuration.nick    = "AndreyMarkov-dev"
-  configuration.speak_percent = 0.02
+  configuration.nick    = "AndreyMarkov"
   configuration.verbose = true
 end
 
