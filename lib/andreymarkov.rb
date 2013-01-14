@@ -31,12 +31,17 @@ class AndreyMarkov
 
   def timer
     p "timer"
-    if should_speak?(AndreyMarkovConfiguration.instance.tick_probability)
-      speak
-    end
+    speak_with_chance(@configuration.speak_percent)
   end
 
   def respond_to_message(string_or_array)
+    update_table(string_or_array)
+    speak_with_chance(@configuration.speak_percent)
+  end
+
+  private
+
+  def update_table(string_or_array)
     words = ensure_split(string_or_array)
 
     (1...words.length).each do |i|
@@ -46,15 +51,12 @@ class AndreyMarkov
     end
 
     @markov_table.update(words.last,:end)
-
-    if should_speak?(@configuration.speak_percent)
-      speak
-    end
-
     @markov_table.save_dump
   end
 
-  private
+  def speak_with_chance(probability)
+    speak if should_speak?(probability)
+  end
 
   def should_speak?(probability)
     c = Random.rand
