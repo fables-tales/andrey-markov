@@ -4,6 +4,7 @@ require "andreymarkov/configuration"
 
 class AndreyMarkov
   include Cinch::Plugin
+  timer 5, method: :timer
 
   listen_to :message
 
@@ -27,6 +28,14 @@ class AndreyMarkov
     end
   end
 
+
+  def timer
+    p "timer"
+    if should_speak?(AndreyMarkovConfiguration.instance.tick_probability)
+      speak
+    end
+  end
+
   def respond_to_message(string_or_array)
     words = ensure_split(string_or_array)
 
@@ -38,7 +47,7 @@ class AndreyMarkov
 
     @markov_table.update(words.last,:end)
 
-    if should_speak?
+    if should_speak?(@configuration.speak_percent)
       speak
     end
 
@@ -47,17 +56,17 @@ class AndreyMarkov
 
   private
 
-  def should_speak?
+  def should_speak?(probability)
     c = Random.rand
 
     if AndreyMarkovConfiguration.instance.verbose
-      puts "should speak?"
+      puts "\nshould speak?\n"
       p c
-      p @configuration.speak_percent
+      p probability
       p @markov_table.sufficiently_populated?
     end
 
-    c < @configuration.speak_percent and @markov_table.sufficiently_populated?
+    c < probability and @markov_table.sufficiently_populated?
   end
 
   def speak
