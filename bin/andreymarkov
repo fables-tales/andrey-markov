@@ -1,16 +1,25 @@
-#!/usr/bin/env ruby
+#!/usr/bin/ruby
 
 require "andreymarkov"
 
 
 AndreyMarkov.configure do |configuration|
-  configuration.channel = "#bag"
   configuration.server  = "irc.synirc.net"
-  configuration.nick    = "AndreyMarkov"
-  configuration.speak_percent = 0.03
-  configuration.verbose = true
-  #spam every 20 minutes (on average)
-  configuration.tick_probability = 1.0/240
+  if File.exists?(".dev")
+    configuration.channel = "#bag-bots"
+    configuration.nick    = "AndreyMarkov-dev"
+    configuration.speak_percent = 0.33
+    configuration.verbose = true
+    #spam every 20 minutes (on average)
+    configuration.tick_probability = 1.0/2
+  else
+    configuration.channel = "#bag"
+    configuration.nick    = "AndreyMarkov"
+    configuration.speak_percent = 0.03
+    configuration.verbose = true
+    #spam every 20 minutes (on average)
+    configuration.tick_probability = 1.0/240
+  end
 end
 
 File.open(".andrey.pid", "w") do |f|
