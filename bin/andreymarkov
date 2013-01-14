@@ -4,11 +4,15 @@ require "andreymarkov"
 
 
 AndreyMarkov.configure do |configuration|
-  configuration.channel = "#bag"
+  configuration.channel = "#bag-bots"
   configuration.server  = "irc.synirc.net"
-  configuration.nick    = "AndreyMarkov"
+  configuration.nick    = "AndreyMarkov-dev"
   configuration.speak_percent = 0.02
   configuration.verbose = true
+end
+
+File.open(".andrey.pid", "w") do |f|
+  f.write Process.pid.to_s
 end
 
 ci = AndreyMarkovConfiguration.instance
