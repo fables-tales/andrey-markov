@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+
+require "andreymarkov"
+
+
+AndreyMarkov.configure do |configuration|
+  configuration.channel = "#bag"
+  configuration.server  = "irc.synirc.net"
+  configuration.nick    = "AndreyMarkov"
+  configuration.speak_percent = 0.02
+  configuration.verbose = true
+end
+
+ci = AndreyMarkovConfiguration.instance
+
+bot = Cinch::Bot.new do
+  configure do |c|
+    c.server = ci.server
+    c.channels = [ci.channel]
+    c.nick = ci.nick
+    c.plugins.plugins = [AndreyMarkov]
+  end
+end
+
+bot.start
