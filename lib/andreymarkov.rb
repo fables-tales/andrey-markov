@@ -48,7 +48,16 @@ class AndreyMarkov
   private
 
   def should_speak?
-    Random.rand < @configuration.speak_percent and @markov_table.sufficiently_populated?
+    c = Random.rand
+
+    if AndreyMarkovConfiguration.instance.verbose
+      puts "should speak?"
+      p c
+      p @configuration.speak_percent
+      p @markov_table.sufficiently_populated?
+    end
+
+    c < @configuration.speak_percent and @markov_table.sufficiently_populated?
   end
 
   def speak
