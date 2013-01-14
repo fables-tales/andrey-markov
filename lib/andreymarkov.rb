@@ -11,7 +11,7 @@ class AndreyMarkov
   def initialize(*args)
     super
     @markov_table  = MarkovTable.new
-    @configuration = self.class.configuration
+    @configuration = AndreyMarkovConfiguration.instance
   end
 
   def self.configure(&blk)
@@ -30,7 +30,9 @@ class AndreyMarkov
 
 
   def timer
-    p "timer"
+    if @configuration.verbose
+      p "timer"
+    end
     speak_with_chance(@configuration.speak_percent)
   end
 
