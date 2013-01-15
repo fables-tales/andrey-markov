@@ -18,7 +18,7 @@ AndreyMarkov.configure do |configuration|
     configuration.speak_percent = 0.03
     configuration.verbose = true
     #spam every 20 minutes (on average)
-    configuration.tick_probability = 1.0/240
+    configuration.tick_probability = 1.0/720
   end
 end
 
