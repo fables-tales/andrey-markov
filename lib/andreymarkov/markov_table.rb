@@ -31,10 +31,6 @@ class MarkovTable
   def load_dump(should_load)
     if File.exists? SAVE_FILE_NAME and should_load
       @transition_table = Marshal.load(File.binread(SAVE_FILE_NAME))
-      if AndreyMarkovConfiguration.instance.verbose
-        puts "Loaded transition table"
-        p @transition_table
-      end
     else
       @transition_table = {}
     end
