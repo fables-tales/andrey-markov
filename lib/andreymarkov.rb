@@ -59,14 +59,6 @@ class AndreyMarkov
 
   def should_speak?(probability)
     c = Random.rand
-
-    if @configuration.verbose
-      puts "\nshould speak?\n"
-      p c
-      p probability
-      p @markov_table.sufficiently_populated?
-    end
-
     c < probability and @markov_table.sufficiently_populated?
   end
 
