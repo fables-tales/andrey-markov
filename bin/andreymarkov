@@ -10,14 +10,14 @@ AndreyMarkov.configure do |configuration|
     configuration.nick    = "AndreyMarkov-dev"
     configuration.speak_percent = 0.33
     configuration.verbose = true
-    #spam every 20 minutes (on average)
+    #spam every 10 seconds (on average)
     configuration.tick_probability = 1.0/2
   else
     configuration.channel = "#bag"
     configuration.nick    = "AndreyMarkov"
     configuration.speak_percent = 0.03
     configuration.verbose = true
-    #spam every 20 minutes (on average)
+    #spam every 60 minutes (on average)
     configuration.tick_probability = 1.0/720
   end
 end
