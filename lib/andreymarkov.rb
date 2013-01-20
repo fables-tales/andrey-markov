@@ -30,9 +30,6 @@ class AndreyMarkov
 
 
   def timer
-    if @configuration.verbose
-      p "timer"
-    end
     speak_with_chance(@configuration.tick_probability)
   end
 
