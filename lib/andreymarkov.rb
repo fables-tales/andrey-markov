@@ -60,7 +60,7 @@ class AndreyMarkov
   def should_speak?(probability)
     c = Random.rand
 
-    if AndreyMarkovConfiguration.instance.verbose
+    if @configuration.verbose
       puts "\nshould speak?\n"
       p c
       p probability
