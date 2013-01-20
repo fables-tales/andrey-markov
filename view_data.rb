@@ -25,5 +25,5 @@ end
 
 puts "average sentence length #{l.inject(:+) / 100.0}"
 
-lexicon_density = hash.map {|key,internal| internal.keys.count * 1.0 / hash.keys.count}.inject(:+) / hash.keys.count
+lexicon_density = hash.map {|key,internal| internal.keys.count * 1.0 / hash.keys.count}.inject(:+)
 puts "lexicon density #{lexicon_density}"
