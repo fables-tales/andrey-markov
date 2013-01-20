@@ -14,6 +14,7 @@ class MarkovTable
       words << select_next_word(words.last)
     end
 
+    #cut off the trailing :end
     words[0...words.length-1].join (" ")
   end
 
