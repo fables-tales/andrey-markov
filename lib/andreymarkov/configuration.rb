@@ -1,7 +1,9 @@
 require "singleton"
 
 class AndreyMarkovConfiguration
-  attr_accessor :channel, :server, :nick, :speak_percent, :verbose, :ticks, :tick_probability
+  attr_accessor :channel, :server, :nick, :speak_percent,
+    :verbose, :ticks, :tick_probability
+
   include Singleton
 
   def configure(&blk)
