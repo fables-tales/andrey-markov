@@ -4,9 +4,6 @@ require "andreymarkov/configuration"
 
 class AndreyMarkov
   include Cinch::Plugin
-  timer 5, method: :timer
-
-  listen_to :message
 
   def initialize(*args)
     super
@@ -22,15 +19,18 @@ class AndreyMarkov
     @@configuration
   end
 
+  timer 5, method: :timer
+
+  def timer
+    speak_with_chance(@configuration.tick_probability)
+  end
+
+  listen_to :message
+
   def listen(m)
     if @configuration.useful_message?(m)
       respond_to_message(m.params[1])
     end
-  end
-
-
-  def timer
-    speak_with_chance(@configuration.tick_probability)
   end
 
   def respond_to_message(string_or_array)
