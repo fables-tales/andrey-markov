@@ -44,6 +44,14 @@ class AndreyMarkov
 
   private
 
+  def shut_up
+      if @speak
+         Channel(@configuration.channel).action "shuts up for a while"
+         Timer(@configuration.stfu_timeout, shots: 1) { @speak = true }
+      end
+      @speak = false
+  end
+
   def got_told?(m)
     m.message.include? @configuration.nick and
     m.message.include? "shut" and
