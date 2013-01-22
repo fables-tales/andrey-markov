@@ -25,10 +25,12 @@ class AndreyMarkov
 
   def listen(m)
     if @configuration.useful_message?(m)
+      if got_told?(m)
+        shut_up
+      end
       respond_to_message(m.params[1])
     end
   end
-
 
   def timer
     if @configuration.verbose
