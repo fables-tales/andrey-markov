@@ -12,6 +12,7 @@ AndreyMarkov.configure do |configuration|
     configuration.verbose = true
     #spam every 20 minutes (on average)
     configuration.tick_probability = 1.0/2
+    configuration.stfu_timeout = 60
   else
     configuration.channel = "#bag"
     configuration.nick    = "AndreyMarkov"
@@ -19,6 +20,7 @@ AndreyMarkov.configure do |configuration|
     configuration.verbose = true
     #spam every 20 minutes (on average)
     configuration.tick_probability = 1.0/720
+    configuration.stfu_timeout = 600
   end
 end
 
