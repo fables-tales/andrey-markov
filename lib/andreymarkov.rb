@@ -12,6 +12,7 @@ class AndreyMarkov
     super
     @markov_table  = MarkovTable.new
     @configuration = AndreyMarkovConfiguration.instance
+    @speak         = true
   end
 
   def self.configure(&blk)
@@ -67,6 +68,10 @@ class AndreyMarkov
   end
 
   def should_speak?(probability)
+    if not @speak
+      return false
+    end
+
     c = Random.rand
 
     if AndreyMarkovConfiguration.instance.verbose
