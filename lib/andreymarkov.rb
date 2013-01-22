@@ -43,6 +43,12 @@ class AndreyMarkov
 
   private
 
+  def got_told?(m)
+    m.message.include? @configuration.nick and
+    m.message.include? "shut" and
+    m.message.include? "up"
+  end
+
   def update_table(string_or_array)
     words = ensure_split(string_or_array)
 
