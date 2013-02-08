@@ -9,12 +9,9 @@ class MarkovTable
   end
 
   def make_sentence
-    words = ["a", :end]
-    while words.length <= 4
-      words = [random_starter_word]
-      while words.last != :end
-        words << select_next_word(words.last)
-      end
+    words = [random_starter_word]
+    while words.last != :end
+      words << select_next_word(words.last)
     end
 
     #cut off the trailing :end
